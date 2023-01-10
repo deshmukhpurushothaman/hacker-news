@@ -1,0 +1,21 @@
+.bodyContainer {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+
+    .newsContainer {
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        // margin: auto;
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
