@@ -1,19 +1,23 @@
 import React from "react";
+import debounce from 'debounce'
 import SearchIcon from '@mui/icons-material/Search'
 import classes from './SearchBar.module.scss'
 
-export const SearchBar = () => {
+interface Props {
+    onUpdate: (query: string) => any
+}
+
+export const SearchBar = (props: Props) => {
+
     return (
         <div className={classes.searchContainer}>
             <input
                 type="text"
                 placeholder="Search Hacker News"
                 name="search"
-            // onChange={handleSearch}
-            // onKeyPress={(e) => handleEnter(e)}
+                onChange={(e) => debounce(props.onUpdate(e.target.value), 2000)}
             />
             <button
-            // onClick={handleClose}
             >
                 <SearchIcon />
             </button>

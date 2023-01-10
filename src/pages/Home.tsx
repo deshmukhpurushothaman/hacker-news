@@ -42,19 +42,23 @@ export const HomePage = () => {
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
-        fetchNews()
+        fetchNews('')
     }, [])
 
-    const fetchNews = async () => {
+    const fetchNews = async (query: string) => {
         setLoading(true)
-        const data = await fetchAllNews()
+        const data = await fetchAllNews(query)
         setNews(data.hits)
         setLoading(false)
     }
 
+    const onSearch = (queryString: string) => {
+        fetchNews(queryString)
+    }
+
     return (
         <div>
-            <Navbar />
+            <Navbar onSearchUpdate={(query) => onSearch(query)} />
             <div className={classes.bodyContainer}>
                 <h2>All News</h2>
                 {loading ?

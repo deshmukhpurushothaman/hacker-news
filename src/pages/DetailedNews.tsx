@@ -48,8 +48,6 @@ export const DetailedNews = () => {
     const fetchNews = async (objectID: string) => {
         setLoading(true)
         const data = await fetchOneNews(objectID)
-        console.log({ data })
-        // data['comments'] = data.children[0] + data.children[1]
         setNews(data)
         setLoading(false)
     }
