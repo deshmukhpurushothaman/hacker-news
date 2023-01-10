@@ -68,7 +68,7 @@ export const HomePage = () => {
         <div>
             <Navbar onSearchUpdate={(query) => onSearch(query)} />
             <div className={classes.bodyContainer}>
-                <h2>All News</h2>
+                <h2>Hacker News</h2>
                 {loading ?
                     (<CircularProgress />) :
                     news ? (
