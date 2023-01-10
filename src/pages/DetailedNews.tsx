@@ -67,7 +67,7 @@ export const DetailedNews = () => {
                         </div>
                     </div>
                     <hr />
-                    <div>Comments</div>
+                    <div className={classes.commentTitle}>Comments</div>
                     <motion.div className={classes.commentsContainer}>
                         {news.children && news.children.map((comment: any, i: number) => (
                             <motion.div
