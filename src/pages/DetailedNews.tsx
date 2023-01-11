@@ -53,47 +53,49 @@ export const DetailedNews = () => {
     }
 
     return (
-        <div className={classes.container}>
-            {loading ? (<CircularProgress />) : (
-                <div>
+        <div className={classes.body}>
+            <div className={classes.container}>
+                {loading ? (<CircularProgress />) : (
                     <div>
-                        <div className={classes.title}>{news.title}</div>
-                        <div className={classes.details}>
-                            <div>{news.author}</div>
-                            <div className={classes.separator}>|</div>
-                            <div>{news.created_at}</div>
-                            <div className={classes.separator}>|</div>
-                            <div>{news.points} Points</div>
+                        <div>
+                            <div className={classes.title}>{news.title}</div>
+                            <div className={classes.details}>
+                                <div>{news.author}</div>
+                                <div className={classes.separator}>|</div>
+                                <div>{news.created_at}</div>
+                                <div className={classes.separator}>|</div>
+                                <div>{news.points} Points</div>
+                            </div>
                         </div>
+                        <hr />
+                        <div className={classes.commentTitle}>Comments</div>
+                        <motion.div className={classes.commentsContainer}>
+                            {news.children && news.children.map((comment: any, i: number) => (
+                                <motion.div
+                                    key={i}
+                                    // className={styles.card}
+                                    // layoutId={n.id}
+                                    variants={container}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: false, amount: 0.25 }}
+                                    whileHover="hover"
+                                // onClick={() => { setSelectedId(n.id); setSelectedProject(n) }} 
+                                >
+                                    <Comments
+                                        title={comment.title}
+                                        text={comment.text}
+                                        author={comment.author}
+                                        created_at={comment.created_at} />
+                                </motion.div>
+                            ))}
+                            {!news.children ? (
+                                <div>No more comments!!!</div>
+                            ) : ('')}
+                        </motion.div>
                     </div>
-                    <hr />
-                    <div className={classes.commentTitle}>Comments</div>
-                    <motion.div className={classes.commentsContainer}>
-                        {news.children && news.children.map((comment: any, i: number) => (
-                            <motion.div
-                                key={i}
-                                // className={styles.card}
-                                // layoutId={n.id}
-                                variants={container}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: false, amount: 0.25 }}
-                                whileHover="hover"
-                            // onClick={() => { setSelectedId(n.id); setSelectedProject(n) }} 
-                            >
-                                <Comments
-                                    title={comment.title}
-                                    text={comment.text}
-                                    author={comment.author}
-                                    created_at={comment.created_at} />
-                            </motion.div>
-                        ))}
-                        {!news.children ? (
-                            <div>No more comments!!!</div>
-                        ) : ('')}
-                    </motion.div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     )
 }

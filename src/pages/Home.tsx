@@ -67,49 +67,51 @@ export const HomePage = () => {
     return (
         <div>
             <Navbar onSearchUpdate={(query) => onSearch(query)} />
-            <div className={classes.bodyContainer}>
-                <h2>Hacker News</h2>
-                {loading ?
-                    (<CircularProgress />) :
-                    news ? (
-                        <>
-                            <motion.div className={classes.newsContainer}>
-                                {news.map((news: any, i: number) => {
-                                    return (
-                                        <motion.div
-                                            key={i}
-                                            // className={styles.card}
-                                            // layoutId={n.id}
-                                            variants={container}
-                                            initial="hidden"
-                                            whileInView="visible"
-                                            viewport={{ once: false, amount: 0.25 }}
-                                            whileHover="hover"
-                                        // onClick={() => { setSelectedId(n.id); setSelectedProject(n) }} 
-                                        >
-                                            <Link to={`/news/${news.objectID}`}>
-                                                <News
-                                                    title={news.title}
-                                                    points={news.points}
-                                                    author={news.author}
-                                                    created_at={news.created_at}
-                                                    url={news.url}
-                                                    num_comments={news.num_comments}
-                                                    objectID={news.objectID}
-                                                />
-                                            </Link>
-                                        </motion.div>
-                                    )
-                                })}
-                            </motion.div>
-                            <div className={classes.paginationContainer}>
-                                <Pagination count={totalPages} color="primary" onChange={(e, p) => setPage(p)} page={page} />
-                            </div>
-                        </>
-                    ) : (
-                        <div>No more news!!!</div>
-                    )
-                }
+            <div className={classes.body}>
+                <div className={classes.bodyContainer}>
+                    <h2>Hacker News</h2>
+                    {loading ?
+                        (<CircularProgress />) :
+                        news ? (
+                            <>
+                                <motion.div className={classes.newsContainer}>
+                                    {news.map((news: any, i: number) => {
+                                        return (
+                                            <motion.div
+                                                key={i}
+                                                // className={styles.card}
+                                                // layoutId={n.id}
+                                                variants={container}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: false, amount: 0.25 }}
+                                                whileHover="hover"
+                                            // onClick={() => { setSelectedId(n.id); setSelectedProject(n) }} 
+                                            >
+                                                <Link to={`/news/${news.objectID}`}>
+                                                    <News
+                                                        title={news.title}
+                                                        points={news.points}
+                                                        author={news.author}
+                                                        created_at={news.created_at}
+                                                        url={news.url}
+                                                        num_comments={news.num_comments}
+                                                        objectID={news.objectID}
+                                                    />
+                                                </Link>
+                                            </motion.div>
+                                        )
+                                    })}
+                                </motion.div>
+                                <div className={classes.paginationContainer}>
+                                    <Pagination count={totalPages} color="primary" onChange={(e, p) => setPage(p)} page={page} />
+                                </div>
+                            </>
+                        ) : (
+                            <div>No more news!!!</div>
+                        )
+                    }
+                </div>
             </div>
         </div>
     )
